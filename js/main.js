@@ -3,7 +3,7 @@
 // --- Configuration ---
 // Register for a free account at Formspree (https://formspree.io)
 // Create a new form, copy the Form ID, and paste it here to make your contact form fully functional.
-const FORMSPREE_FORM_ID = "https://formspree.io/f/xnjyyzer"; 
+const FORMSPREE_FORM_ID = "https://formspree.io/f/xnjyyzer";    
 
 // --- Projects Data ---
 const projectsData = {
