@@ -3,7 +3,7 @@
 // --- Configuration ---
 // Register for a free account at Formspree (https://formspree.io)
 // Create a new form, copy the Form ID, and paste it here to make your contact form fully functional.
-const FORMSPREE_FORM_ID = "https://formspree.io/f/xnjyyzer";    
+const FORMSPREE_FORM_ID = "YOUR_FORMSPREE_FORM_ID"; 
 
 // --- Projects Data ---
 const projectsData = {
@@ -277,29 +277,31 @@ if (contactForm) {
 
         const nameVal = document.getElementById('name').value;
         const emailVal = document.getElementById('email').value;
-        const subjectVal = document.getElementById('subject').value;
-        const messageVal = document.getElementById('message').value;
 
         // Perform actual fetch to Formspree if ID is configured
         if (FORMSPREE_FORM_ID && FORMSPREE_FORM_ID !== "YOUR_FORMSPREE_FORM_ID" && FORMSPREE_FORM_ID.trim() !== "") {
+            const formData = new FormData(contactForm);
+
             fetch(`https://formspree.io/f/${FORMSPREE_FORM_ID}`, {
                 method: 'POST',
+                body: formData,
                 headers: {
-                    'Content-Type': 'application/json',
                     'Accept': 'application/json'
-                },
-                body: JSON.stringify({
-                    name: nameVal,
-                    email: emailVal,
-                    subject: subjectVal,
-                    message: messageVal
-                })
+                }
             })
             .then(response => {
                 if (response.ok) {
                     showSuccess(false);
                 } else {
-                    showError("Form submission failed. Please verify your Formspree ID is configured correctly.");
+                    response.json().then(data => {
+                        if (data && data.errors) {
+                            showError("Error: " + data.errors.map(err => err.message).join(", "));
+                        } else {
+                            showError("Form submission failed. Please verify your Formspree ID is correct.");
+                        }
+                    }).catch(() => {
+                        showError("Form submission failed. Please verify your Formspree ID is correct.");
+                    });
                 }
             })
             .catch(error => {
