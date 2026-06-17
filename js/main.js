@@ -1,10 +1,5 @@
 // Mudassar Ali - Portfolio JavaScript Main Logic
 
-// --- Configuration ---
-// Register for a free account at Formspree (https://formspree.io)
-// Create a new form, copy the Form ID, and paste it here to make your contact form fully functional.
-const FORMSPREE_FORM_ID = "https://formspree.io/f/xnjyyzer"; 
-
 // --- Projects Data ---
 const projectsData = {
     vtol_drone: {
@@ -264,90 +259,4 @@ window.addEventListener('keydown', (e) => {
     }
 });
 
-// --- Contact Form Handling (Formspree Integration) ---
-const contactForm = document.getElementById('contact-form');
-if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        const submitBtn = contactForm.querySelector('button[type="submit"]');
-        const originalText = submitBtn.innerText;
-        submitBtn.disabled = true;
-        submitBtn.innerText = 'Sending...';
 
-        const nameVal = document.getElementById('name').value;
-        const emailVal = document.getElementById('email').value;
-
-        // Perform actual fetch to Formspree if ID is configured
-        if (FORMSPREE_FORM_ID && FORMSPREE_FORM_ID !== "YOUR_FORMSPREE_FORM_ID" && FORMSPREE_FORM_ID.trim() !== "") {
-            const formData = new FormData(contactForm);
-
-            fetch(`https://formspree.io/f/${FORMSPREE_FORM_ID}`, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    showSuccess(false);
-                } else {
-                    response.json().then(data => {
-                        if (data && data.errors) {
-                            showError("Error: " + data.errors.map(err => err.message).join(", "));
-                        } else {
-                            showError("Form submission failed. Please verify your Formspree ID is correct.");
-                        }
-                    }).catch(() => {
-                        showError("Form submission failed. Please verify your Formspree ID is correct.");
-                    });
-                }
-            })
-            .catch(error => {
-                showError("A connection error occurred. Please check your internet connection.");
-            });
-        } else {
-            // Log a configuration warning and fall back to demo display
-            console.warn("Contact form submitted in Demo Mode. To receive actual emails, configure FORMSPREE_FORM_ID in js/main.js.");
-            setTimeout(() => {
-                showSuccess(true);
-            }, 1000);
-        }
-
-        function showSuccess(isDemo) {
-            submitBtn.classList.remove('bg-zinc-900', 'hover:bg-accent');
-            submitBtn.classList.add('bg-accent', 'text-white', 'border-accent');
-            
-            if (isDemo) {
-                submitBtn.innerText = 'Message Simulating...';
-                alert("Demo Submission Successful!\n\nName: " + nameVal + "\nEmail: " + emailVal + "\n\nNote: To receive actual emails, please go to Formspree.io, create a free form, get your Form ID, and update the FORMSPREE_FORM_ID variable at the top of js/main.js.");
-                submitBtn.innerText = 'Demo Submitted!';
-            } else {
-                submitBtn.innerText = 'Message Sent Successfully!';
-            }
-
-            setTimeout(() => {
-                contactForm.reset();
-                submitBtn.disabled = false;
-                submitBtn.classList.remove('bg-accent', 'text-white', 'border-accent');
-                submitBtn.classList.add('bg-zinc-900', 'hover:bg-accent');
-                submitBtn.innerText = originalText;
-            }, 4000);
-        }
-
-        function showError(errorMessage) {
-            submitBtn.classList.remove('bg-zinc-900', 'hover:bg-accent');
-            submitBtn.classList.add('bg-red-600', 'text-white', 'border-red-600');
-            submitBtn.innerText = 'Failed to Send';
-            alert(errorMessage);
-
-            setTimeout(() => {
-                submitBtn.disabled = false;
-                submitBtn.classList.remove('bg-red-600', 'text-white', 'border-red-600');
-                submitBtn.classList.add('bg-zinc-900', 'hover:bg-accent');
-                submitBtn.innerText = originalText;
-            }, 3000);
-        }
-    });
-}
