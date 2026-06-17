@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mudassar Ali | Mechanical Engineer - Robotics & Prototyping</title>
+    <meta name="description" content="Personal portfolio of Mudassar Ali, a Mechanical Engineer specializing in robotics prototyping, CAD design, ANSYS structural analysis, and manufacturing. Check out my work on VTOL UAVs, cleaning robots, and legged systems.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Style Sheet -->
+    <link rel="stylesheet" href="index.css">
+    
+    <!-- Tailwind Custom Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        lightbg: '#fafafa', // Zinc 50
+                        lightcard: '#ffffff',
+                        borderzinc: '#e4e4e7', // Zinc 200
+                        accent: '#0891b2', // Cyan 600
+                        accentHover: '#0369a1', // Cyan 700
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        display: ['"Space Grotesk"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-lightbg text-zinc-600 font-sans selection:bg-accent selection:text-white overflow-x-hidden">
+
+    <!-- Ambient Grid & Glow Effects -->
+    <div class="fixed inset-0 z-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(8,145,178,0.08),rgba(255,255,255,0))] pointer-events-none"></div>
+    <div class="fixed inset-0 z-0 bg-[linear-gradient(to_right,#e4e4e7_1px,transparent_1px),linear-gradient(to_bottom,#e4e4e7_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-40 pointer-events-none"></div>
+
+    <!-- Sticky Navigation Header -->
+    <header class="fixed top-0 left-0 w-full z-40 bg-lightbg/75 backdrop-blur-md border-b border-borderzinc/60 transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="#" class="font-display font-bold text-xl tracking-wider text-zinc-900 hover:text-accent transition-colors">
+                MUDASSAR<span class="text-accent">.</span>ALI
+            </a>
+            
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium tracking-wide">
+                <a href="#about" class="text-zinc-500 hover:text-zinc-900 transition-colors relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[1px] after:bg-accent hover:after:w-full after:transition-all">About</a>
+                <a href="#projects" class="text-zinc-500 hover:text-zinc-900 transition-colors relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[1px] after:bg-accent hover:after:w-full after:transition-all">Projects</a>
+                <a href="#contact" class="text-zinc-500 hover:text-zinc-900 transition-colors relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[1px] after:bg-accent hover:after:w-full after:transition-all">Contact</a>
+                <a href="assets/docs/resume.pdf" target="_blank" class="border border-accent/30 hover:border-accent bg-accent/5 hover:bg-accent text-accent hover:text-white px-4 py-2 rounded-md font-display font-medium text-xs tracking-wider transition-all duration-300 uppercase">
+                    Resume
+                </a>
+            </nav>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-zinc-500 hover:text-zinc-900 focus:outline-none" aria-label="Toggle Menu">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Side Navigation Drawer -->
+        <div id="mobile-menu" class="hidden fixed inset-0 z-50 bg-lightbg/98 flex flex-col justify-center items-center gap-8 text-2xl font-display font-semibold transition-all duration-300">
+            <!-- Close Button -->
+            <button id="mobile-close-btn" class="absolute top-6 right-6 text-zinc-500 hover:text-zinc-900" aria-label="Close Menu">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+            <a href="#about" class="mobile-nav-link text-zinc-600 hover:text-zinc-900 transition-colors">About</a>
+            <a href="#projects" class="mobile-nav-link text-zinc-600 hover:text-zinc-900 transition-colors">Projects</a>
+            <a href="#contact" class="mobile-nav-link text-zinc-600 hover:text-zinc-900 transition-colors">Contact</a>
+            <a href="assets/docs/resume.pdf" target="_blank" class="mobile-nav-link border border-accent/30 hover:border-accent text-accent px-6 py-3 rounded-md font-display font-medium text-base tracking-wider transition-all uppercase">
+                Download Resume
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="relative z-10 max-w-6xl mx-auto px-6 pt-32 pb-24 space-y-36">
+
+        <!-- Hero Section -->
+        <section id="hero" class="min-h-[70vh] flex flex-col md:flex-row justify-center items-center gap-12 py-8">
+            <!-- Left Headline Info -->
+            <div class="flex-1 space-y-6 text-center md:text-left">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-zinc-200 bg-zinc-100 text-xs text-accent font-mono tracking-widest uppercase">
+                    <span class="w-1.5 h-1.5 bg-accent rounded-full animate-pulse"></span>
+                    Available for Work
+                </div>
+                
+                <h1 class="font-display font-bold text-4xl sm:text-5xl lg:text-6xl text-zinc-900 leading-tight">
+                    I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-zinc-900 via-zinc-700 to-accent">Mudassar</span>
+                </h1>
+                
+                <p class="font-display text-xl sm:text-2xl text-zinc-600 font-medium tracking-wide">
+                    Mechanical Engineer <span class="text-zinc-300">|</span> Robotics & Prototyping
+                </p>
+                
+                <p class="text-base text-zinc-500 max-w-xl leading-relaxed">
+                    I design, manufacture, and prototype custom mechanical systems, blending CAD modeling with embedded electronics to build intelligent physical agents. From aerial robotics to legged movement, I craft working solutions from concepts.
+                </p>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4 pt-4">
+                    <a href="#projects" class="w-full sm:w-auto text-center bg-zinc-900 hover:bg-zinc-800 text-white px-8 py-3.5 rounded-md font-display font-semibold text-sm tracking-wider transition-all duration-300 shadow-lg shadow-zinc-900/10 hover:scale-[1.02]">
+                        Explore Projects
+                    </a>
+                    <a href="assets/docs/resume.pdf" target="_blank" class="w-full sm:w-auto text-center border border-zinc-200 hover:border-accent bg-zinc-50 hover:bg-accent/5 text-zinc-700 hover:text-accent px-8 py-3.5 rounded-md font-display font-semibold text-sm tracking-wider transition-all duration-300 hover:scale-[1.02]">
+                        Download Resume
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right Profile Image with Custom Ambient Styling (Removed grayscale) -->
+            <div class="flex-shrink-0 relative w-64 h-64 sm:w-80 sm:h-80 select-none group">
+                <div class="absolute inset-0 bg-accent/10 rounded-2xl blur-3xl group-hover:bg-accent/20 transition-all duration-500 animate-pulse-slow"></div>
+                <div class="relative w-full h-full rounded-2xl border border-zinc-200 bg-white overflow-hidden shadow-xl transition-transform duration-500 group-hover:scale-[1.02] group-hover:border-zinc-300">
+                    <img src="assets/images/profile.jpeg" alt="Mudassar Ali" class="w-full h-full object-cover object-center transition-all duration-500">
+                </div>
+                <!-- Mini Tech Details Accent -->
+                <div class="absolute bottom-[-16px] right-[-16px] px-3.5 py-1.5 rounded-md border border-zinc-200 bg-lightcard font-mono text-[10px] text-zinc-400 tracking-wider">
+                    SYS: ACTIVE
+                </div>
+            </div>
+        </section>
+
+        <!-- About Me Section -->
+        <section id="about" class="space-y-12 scroll-mt-24">
+            <div class="flex items-center gap-4">
+                <h2 class="font-display font-bold text-2xl sm:text-3xl text-zinc-900 tracking-wide">
+                    About Me
+                </h2>
+                <div class="h-[1px] flex-1 bg-borderzinc"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                <!-- Bio Text -->
+                <div class="lg:col-span-7 space-y-6 text-zinc-600 leading-relaxed">
+                    <p>
+                        I hold a Bachelor's in Mechanical Engineering from <strong class="text-zinc-900">NUST College of Electrical and Mechanical Engineering</strong> (2022 - 2026). Over the course of my academic and research projects, I have specialized in bridging the gap between mechanical engineering principles and advanced electronic integration.
+                    </p>
+                    <p>
+                        My work revolves around structural engineering, manufacturing workflows, and robotics. I have worked as a Project Contributor at NUST's <strong class="text-zinc-900">Research and Development Center (RDC)</strong> and as an Intern in the Robot Design & Development Lab at the <strong class="text-zinc-900">National Centre of Robotics and Automation (NCRA)</strong>.
+                    </p>
+                    <p>
+                        Whether simulating stresses in ANSYS, drafting production-ready drawings in SolidWorks, or doing hands-on assembly, I enjoy optimizing physical mechanisms for load-bearing efficiency, reliability, and autonomous operation.
+                    </p>
+                </div>
+
+                <!-- Technical Skills List -->
+                <div class="lg:col-span-5 bg-lightcard border border-borderzinc rounded-xl p-8 space-y-6 shadow-sm">
+                    <h3 class="font-display font-semibold text-lg text-zinc-900">Technical Toolkit</h3>
+                    <div class="space-y-4 font-mono text-xs">
+                        <div>
+                            <span class="text-zinc-400 block mb-2 tracking-wider uppercase">CAD & Design</span>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2.5 py-1 rounded bg-zinc-100/60 border border-zinc-200/80 text-zinc-700">SolidWorks</span>
+                                <span class="px-2.5 py-1 rounded bg-zinc-100/60 border border-zinc-200/80 text-zinc-700">CAD drawings (2D/3D)</span>
+                                <span class="px-2.5 py-1 rounded bg-zinc-100/60 border border-zinc-200/80 text-zinc-700">Product Design</span>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="text-zinc-400 block mb-2 tracking-wider uppercase">Analysis & FEA</span>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2.5 py-1 rounded bg-zinc-100/60 border border-zinc-200/80 text-zinc-700">ANSYS FEA</span>
+                                <span class="px-2.5 py-1 rounded bg-zinc-100/60 border border-zinc-200/80 text-zinc-700">Structural Analysis</span>
+                                <span class="px-2.5 py-1 rounded bg-zinc-100/60 border border-zinc-200/80 text-zinc-700">Kinematics Optimization</span>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="text-zinc-400 block mb-2 tracking-wider uppercase">Rapid Prototyping</span>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2.5 py-1 rounded bg-zinc-100/60 border border-zinc-200/80 text-zinc-700">3D Printing (FDM/SLA)</span>
+                                <span class="px-2.5 py-1 rounded bg-zinc-100/60 border border-zinc-200/80 text-zinc-700">Laser Cutting</span>
+                                <span class="px-2.5 py-1 rounded bg-zinc-100/60 border border-zinc-200/80 text-zinc-700">Precision Machining</span>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="text-zinc-400 block mb-2 tracking-wider uppercase">Programming & Automation</span>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2.5 py-1 rounded bg-zinc-100/60 border border-zinc-200/80 text-zinc-700">C++ (Arduino/STM32)</span>
+                                <span class="px-2.5 py-1 rounded bg-zinc-100/60 border border-zinc-200/80 text-zinc-700">Python</span>
+                                <span class="px-2.5 py-1 rounded bg-zinc-100/60 border border-zinc-200/80 text-zinc-700">Embedded Systems</span>
+                                <span class="px-2.5 py-1 rounded bg-zinc-100/60 border border-zinc-200/80 text-zinc-700">AI Vision Integration</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience / Projects Section -->
+        <section id="projects" class="space-y-12 scroll-mt-24">
+            <div class="flex items-center gap-4">
+                <h2 class="font-display font-bold text-2xl sm:text-3xl text-zinc-900 tracking-wide">
+                    Featured Work
+                </h2>
+                <div class="h-[1px] flex-1 bg-borderzinc"></div>
+            </div>
+
+            <!-- Projects Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Project 1: VTOL Drone -->
+                <div class="project-card group cursor-pointer bg-lightcard border border-borderzinc hover:border-zinc-300 rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-zinc-200/40" data-project-id="vtol_drone">
+                    <div class="relative h-48 overflow-hidden bg-zinc-100">
+                        <img src="assets/images/projects/vtol_drone/image_3.png" alt="VTOL UAV Project" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-lightcard/95 via-lightcard/40 to-transparent"></div>
+                        <span class="absolute bottom-4 left-4 px-2 py-0.5 rounded bg-cyan-50 border border-cyan-100 font-mono text-[9px] text-accent uppercase tracking-wider">FYP / UAV</span>
+                    </div>
+                    <div class="p-6 space-y-3">
+                        <h3 class="font-display font-semibold text-lg text-zinc-900 group-hover:text-accent transition-colors">Tricopter Tilt-Rotor VTOL UAV</h3>
+                        <p class="text-sm text-zinc-600 line-clamp-3">
+                            Designed and manufactured a tricopter tilt-rotor VTOL drone equipped with an onboard AI vision system for flood survivor detection and defense applications.
+                        </p>
+                        <div class="flex items-center text-xs font-mono text-zinc-500 group-hover:text-zinc-800 transition-colors pt-2">
+                            <span>Read Case Study</span>
+                            <svg class="w-4 h-4 ml-1.5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: Skyscraper Robot -->
+                <div class="project-card group cursor-pointer bg-lightcard border border-borderzinc hover:border-zinc-300 rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-zinc-200/40" data-project-id="skyscraper">
+                    <div class="relative h-48 overflow-hidden bg-zinc-100">
+                        <img src="assets/images/projects/skyscraper/image_1.jpeg" alt="Skyscraper Robot" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-lightcard/95 via-lightcard/40 to-transparent"></div>
+                        <span class="absolute bottom-4 left-4 px-2 py-0.5 rounded bg-cyan-50 border border-cyan-100 font-mono text-[9px] text-accent uppercase tracking-wider">Robotics / Mechatronics</span>
+                    </div>
+                    <div class="p-6 space-y-3">
+                        <h3 class="font-display font-semibold text-lg text-zinc-900 group-hover:text-accent transition-colors">Skyscraper Cleaning Robot</h3>
+                        <p class="text-sm text-zinc-600 line-clamp-3">
+                            Led design and prototyping of a high-rise window cleaning robot utilizing a smart wire-grip motion platform, tilt-correction algorithms, and obstacle avoidance.
+                        </p>
+                        <div class="flex items-center text-xs font-mono text-zinc-500 group-hover:text-zinc-800 transition-colors pt-2">
+                            <span>Read Case Study</span>
+                            <svg class="w-4 h-4 ml-1.5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: NCRA Robodog -->
+                <div class="project-card group cursor-pointer bg-lightcard border border-borderzinc hover:border-zinc-300 rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-zinc-200/40" data-project-id="robodog">
+                    <div class="relative h-48 overflow-hidden bg-zinc-100">
+                        <img src="assets/images/projects/robodog/image_1.png" alt="Robodog Internship" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-lightcard/95 via-lightcard/40 to-transparent"></div>
+                        <span class="absolute bottom-4 left-4 px-2 py-0.5 rounded bg-cyan-50 border border-cyan-100 font-mono text-[9px] text-accent uppercase tracking-wider">NCRA / Legged Robotics</span>
+                    </div>
+                    <div class="p-6 space-y-3">
+                        <h3 class="font-display font-semibold text-lg text-zinc-900 group-hover:text-accent transition-colors">Quadrupedal Robodog Development</h3>
+                        <p class="text-sm text-zinc-600 line-clamp-3">
+                            Contributed to mechanical stability and gait optimization of a legged quadruped. Designed and simulated linkages in SolidWorks and validated structures via ANSYS.
+                        </p>
+                        <div class="flex items-center text-xs font-mono text-zinc-500 group-hover:text-zinc-800 transition-colors pt-2">
+                            <span>Read Case Study</span>
+                            <svg class="w-4 h-4 ml-1.5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4: Hydraulic Bench -->
+                <div class="project-card group cursor-pointer bg-lightcard border border-borderzinc hover:border-zinc-300 rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-zinc-200/40" data-project-id="hydraulic_bench">
+                    <div class="relative h-48 overflow-hidden bg-zinc-100">
+                        <img src="assets/images/projects/hydraulic_bench/image_1.jpeg" alt="Hydraulic Bench & Drawings" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-lightcard/95 via-lightcard/40 to-transparent"></div>
+                        <span class="absolute bottom-4 left-4 px-2 py-0.5 rounded bg-cyan-50 border border-cyan-100 font-mono text-[9px] text-accent uppercase tracking-wider">CAD / R&D</span>
+                    </div>
+                    <div class="p-6 space-y-3">
+                        <h3 class="font-display font-semibold text-lg text-zinc-900 group-hover:text-accent transition-colors">Hydraulic Workbench & CAD Drawings</h3>
+                        <p class="text-sm text-zinc-600 line-clamp-3">
+                            Engineered high-precision 2D/3D fabrication drawings for a custom hydraulic workbench and structural chassis components of an experimental electric bike.
+                        </p>
+                        <div class="flex items-center text-xs font-mono text-zinc-500 group-hover:text-zinc-800 transition-colors pt-2">
+                            <span>Read Case Study</span>
+                            <svg class="w-4 h-4 ml-1.5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5: EHPVC -->
+                <div class="project-card group cursor-pointer bg-lightcard border border-borderzinc hover:border-zinc-300 rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-zinc-200/40" data-project-id="ehpvc">
+                    <div class="relative h-48 overflow-hidden bg-zinc-100">
+                        <img src="assets/images/projects/ehpvc/image_1.jpeg" alt="EHPVC Vehicle" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-lightcard/95 via-lightcard/40 to-transparent"></div>
+                        <span class="absolute bottom-4 left-4 px-2 py-0.5 rounded bg-cyan-50 border border-cyan-100 font-mono text-[9px] text-accent uppercase tracking-wider">Manufacturing / EHPVC</span>
+                    </div>
+                    <div class="p-6 space-y-3">
+                        <h3 class="font-display font-semibold text-lg text-zinc-900 group-hover:text-accent transition-colors">Electric Human-Powered Vehicle (EHPVC)</h3>
+                        <p class="text-sm text-zinc-600 line-clamp-3">
+                            Led a 10-member multidisciplinary engineering team to design, perform stress analysis on, and build Pakistan's first electric-assisted recumbent hybrid vehicle.
+                        </p>
+                        <div class="flex items-center text-xs font-mono text-zinc-500 group-hover:text-zinc-800 transition-colors pt-2">
+                            <span>Read Case Study</span>
+                            <svg class="w-4 h-4 ml-1.5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="space-y-12 scroll-mt-24">
+            <div class="flex items-center gap-4">
+                <h2 class="font-display font-bold text-2xl sm:text-3xl text-zinc-900 tracking-wide">
+                    Get in Touch
+                </h2>
+                <div class="h-[1px] flex-1 bg-borderzinc"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                <!-- Info Cards -->
+                <div class="lg:col-span-5 space-y-6">
+                    <p class="text-zinc-600 leading-relaxed">
+                        I am open to discuss prototyping collaborations, design roles, and hardware startup opportunities. Feel free to reach out via email, phone, or by submitting this message form.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <a href="mailto:mudassaraliiqbal5@gmail.com" class="flex items-center gap-4 p-4 rounded-lg bg-lightcard border border-borderzinc hover:border-accent/40 transition-colors group shadow-sm">
+                            <div class="w-10 h-10 rounded bg-zinc-100/60 border border-zinc-200/80 flex items-center justify-center text-zinc-500 group-hover:text-accent group-hover:border-accent/25 transition-colors">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                            </div>
+                            <div>
+                                <span class="block font-mono text-[10px] text-zinc-400 tracking-wider uppercase">Email Me</span>
+                                <span class="font-medium text-zinc-900 text-sm group-hover:text-accent transition-colors">mudassaraliiqbal5@gmail.com</span>
+                            </div>
+                        </a>
+
+                        <a href="tel:+923089374188" class="flex items-center gap-4 p-4 rounded-lg bg-lightcard border border-borderzinc hover:border-accent/40 transition-colors group shadow-sm">
+                            <div class="w-10 h-10 rounded bg-zinc-100/60 border border-zinc-200/80 flex items-center justify-center text-zinc-500 group-hover:text-accent group-hover:border-accent/25 transition-colors">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                            </div>
+                            <div>
+                                <span class="block font-mono text-[10px] text-zinc-400 tracking-wider uppercase">Call Me</span>
+                                <span class="font-medium text-zinc-900 text-sm group-hover:text-accent transition-colors">+92 308 9374188</span>
+                            </div>
+                        </a>
+
+                        <div class="flex items-center gap-4 p-4 rounded-lg bg-lightcard border border-borderzinc shadow-sm">
+                            <div class="w-10 h-10 rounded bg-zinc-100/60 border border-zinc-200/80 flex items-center justify-center text-zinc-500">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            </div>
+                            <div>
+                                <span class="block font-mono text-[10px] text-zinc-400 tracking-wider uppercase">Location</span>
+                                <span class="font-medium text-zinc-900 text-sm">Rawalpindi, Pakistan</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <form id="contact-form" class="lg:col-span-7 bg-lightcard border border-borderzinc rounded-xl p-8 space-y-6 shadow-sm">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label for="name" class="block font-mono text-[10px] text-zinc-500 tracking-widest uppercase">Name</label>
+                            <input type="text" id="name" required class="w-full bg-zinc-50 border border-borderzinc rounded px-4 py-3 text-sm text-zinc-900 focus:outline-none focus:border-accent focus:bg-white transition-colors">
+                        </div>
+                        <div class="space-y-2">
+                            <label for="email" class="block font-mono text-[10px] text-zinc-500 tracking-widest uppercase">Email</label>
+                            <input type="email" id="email" required class="w-full bg-zinc-50 border border-borderzinc rounded px-4 py-3 text-sm text-zinc-900 focus:outline-none focus:border-accent focus:bg-white transition-colors">
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <label for="subject" class="block font-mono text-[10px] text-zinc-500 tracking-widest uppercase">Subject</label>
+                        <input type="text" id="subject" required class="w-full bg-zinc-50 border border-borderzinc rounded px-4 py-3 text-sm text-zinc-900 focus:outline-none focus:border-accent focus:bg-white transition-colors">
+                    </div>
+                    <div class="space-y-2">
+                        <label for="message" class="block font-mono text-[10px] text-zinc-500 tracking-widest uppercase">Message</label>
+                        <textarea id="message" required rows="5" class="w-full bg-zinc-50 border border-borderzinc rounded px-4 py-3 text-sm text-zinc-900 focus:outline-none focus:border-accent focus:bg-white transition-colors resize-none"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-zinc-900 hover:bg-accent hover:text-white border border-zinc-800 hover:border-accent text-white font-display font-semibold text-xs tracking-wider uppercase py-3.5 rounded transition-all duration-300">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-borderzinc/60 py-8 text-center text-xs font-mono text-zinc-500">
+        <p>&copy; 2026 Mudassar Ali. All rights reserved.</p>
+        <p class="mt-2 text-zinc-400">Designed &amp; Developed with precision.</p>
+    </footer>
+
+    <!-- Fullscreen Project Detail Modal (Populated Dynamically) -->
+    <div id="project-modal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-white/90 flex items-center justify-center p-4 sm:p-6 md:p-8 backdrop-blur-sm">
+        <!-- Close trigger overlay -->
+        <div class="absolute inset-0 cursor-pointer" onclick="closeProjectModal()"></div>
+        
+        <!-- Modal Card Content -->
+        <div class="relative w-full max-w-4xl bg-lightcard border border-borderzinc rounded-2xl overflow-hidden shadow-2xl z-10 flex flex-col md:flex-row max-h-[90vh]">
+            
+            <!-- Media Container (Left/Top) -->
+            <div class="relative w-full md:w-[55%] bg-zinc-50 flex flex-col justify-center select-none group/media h-64 sm:h-96 md:h-auto min-h-[300px]">
+                
+                <!-- Media Slides (Images & Videos injected here) -->
+                <div id="modal-slides-container" class="relative w-full h-full flex items-center justify-center">
+                    <!-- Dynamic injection -->
+                </div>
+
+                <!-- Navigation Controls -->
+                <button id="slide-prev" class="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full border border-zinc-200 bg-white/90 text-zinc-600 hover:text-zinc-900 hover:border-zinc-400 transition-colors focus:outline-none hidden">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                </button>
+                <button id="slide-next" class="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full border border-zinc-200 bg-white/90 text-zinc-600 hover:text-zinc-900 hover:border-zinc-400 transition-colors focus:outline-none hidden">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </button>
+
+                <!-- Indicator Badges -->
+                <div id="media-indicator" class="absolute bottom-4 left-4 px-2.5 py-1 rounded bg-white/90 border border-zinc-200 font-mono text-[9px] text-zinc-500 tracking-wider">
+                    <!-- Slider indicator -->
+                </div>
+            </div>
+
+            <!-- Copy Container (Right/Bottom) -->
+            <div class="w-full md:w-[45%] p-6 sm:p-8 flex flex-col overflow-y-auto max-h-[60vh] md:max-h-[90vh]">
+                <!-- Close Button -->
+                <button onclick="closeProjectModal()" class="absolute top-4 right-4 p-2 text-zinc-500 hover:text-zinc-900 rounded-full bg-zinc-100 hover:bg-zinc-200 transition-all border border-zinc-200 focus:outline-none">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+
+                <div class="space-y-6">
+                    <div class="space-y-2">
+                        <span id="modal-category" class="font-mono text-[10px] text-accent tracking-widest uppercase"></span>
+                        <h3 id="modal-title" class="font-display font-bold text-xl sm:text-2xl text-zinc-900"></h3>
+                        <p id="modal-timeline" class="font-mono text-[10px] text-zinc-400 tracking-wider"></p>
+                    </div>
+
+                    <div id="modal-description" class="text-sm text-zinc-600 space-y-4 leading-relaxed">
+                        <!-- Bullet points inject -->
+                    </div>
+
+                    <div class="space-y-2 pt-2 border-t border-borderzinc">
+                        <span class="block font-mono text-[9px] text-zinc-400 tracking-wider uppercase">Key Technologies</span>
+                        <div id="modal-tech" class="flex flex-wrap gap-1.5 font-mono text-[10px]">
+                            <!-- Tech tags inject -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main JavaScript -->
+    <script src="js/main.js"></script>
+</body>
+</html>
